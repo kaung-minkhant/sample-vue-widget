@@ -5,8 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sample Vue Widget</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background-color: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Hello, Vue :)</h1>
+
+    <div id="app">
+
+        <div v-if="showBooks">
+            <ul>
+                <li v-for="book in books">
+                    <h2>{{ book.title }}</h2>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
+
+            <div v-for="book in books">
+                <h2>{{ book.title }}</h2>
+                <p>{{ book.author }}</p>
+            </div>
+        </div>
+
+        <button v-on:click="age++">Increase Age</button>
+        <button @click="age--">Decrease Age</button>
+        <div @click="changeTitle('Other title')">Hi</div>
+        <button @click="toggleShowBook">
+            <span v-if="!showBooks">Show Books</span>
+            <span v-else>Hide Books</span>
+        </button>
+
+        <div v-show="showBooks">Currently showing Books</div>
+
+        <!-- mouse events -->
+        <div class="box" @mouseover="handleEvent($event, 5)">Mouse Over</div>
+        <div class="box" @mouseleave="handleEvent">Mouse leave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMouseMove" @mouseleave="clearMouseMove">Position - {{ x }} {{ y }}</div>
+
+        <!-- attribute binding  -->
+        <a v-bind:href="url">best website ever</a>
+        <a :href="url">best website ever</a>
+
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
