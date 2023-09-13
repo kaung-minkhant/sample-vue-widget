@@ -5,15 +5,21 @@ const app = Vue.createApp({
         return {
             showBooks: true,
             books: [
-              { title: 'name of the wind', author: 'kaung min khant'},  
-              { title: 'the way of kings', author: 'shunn le yee'},  
-              { title: 'the final empire', author: 'shally nadz'},  
+              { title: 'name of the wind', author: 'kaung min khant', isFav: true},  
+              { title: 'the way of kings', author: 'shunn le yee', isFav: false},  
+              { title: 'the final empire', author: 'shally nadz', isFav: true},  
             ],
             x: 0,
             y: 0,
             url: 'http://www.thenetninja.co.uk',
         }
     },
+
+    computed: {
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav)
+        }
+    }, 
 
     methods: {
         changeTitle(title) {
@@ -37,6 +43,10 @@ const app = Vue.createApp({
         clearMouseMove() {
             this.x = 0
             this.y = 0
+        },
+
+        toggleFav(book) {
+            book.isFav = !book.isFav
         }
     }
 })

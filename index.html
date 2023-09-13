@@ -15,6 +15,10 @@
             margin: 20px;
             display: inline-block;
         }
+
+        .fav {
+            background-color: pink;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +28,7 @@
 
         <div v-if="showBooks">
             <ul>
-                <li v-for="book in books">
+                <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)">
                     <h2>{{ book.title }}</h2>
                     <p>{{ book.author }}</p>
                 </li>
@@ -55,6 +59,9 @@
         <!-- attribute binding  -->
         <a v-bind:href="url">best website ever</a>
         <a :href="url">best website ever</a>
+
+        <!-- computed properties -->
+        <p v-for="book in filteredBooks">{{ book.author }}</p>
 
     </div>
 
